@@ -1,0 +1,30 @@
+import cv2
+import numpy as np
+
+# Ruta de la imagen de entrada
+image_file = "C:\\Users\\santo\\Documents\\GitHub\\Ejemplos-Emi\\OpenCV\\oso.jpg"
+# Ruta de la imagen de salida (imagen filtrada)
+output_file  = "C:\\Users\\santo\\Documents\\GitHub\\Ejemplos-Emi\\OpenCV\\oso_filtrado.png"
+
+
+# Leer la imagen de entrada
+img = cv2.imread(image_file)
+
+# Crear el kernel de convolución de 3x3 con valores de 1/9
+kernel = np.ones((3, 3), np.float32) / 9
+
+# Aplicar el filtrado 2D utilizando el kernel definido
+dst = cv2.filter2D(src=img, ddepth=-1, kernel=kernel)
+
+# Mostrar la imagen original y la imagen filtrada
+cv2.imshow('Original', img)
+cv2.imshow('Filtrada', dst)
+
+# Guardar la imagen filtrada en el archivo especificado
+cv2.imwrite(output_file, dst)
+
+# Esperar hasta que se presione una tecla
+cv2.waitKey(0)
+
+# Cerrar todas las ventanas abiertas
+cv2.destroyAllWindows()

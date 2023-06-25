@@ -1,0 +1,20 @@
+import cv2
+
+# Cargar imagen
+image_file = "C:\\Users\\santo\\Documents\\GitHub\\Ejemplos-Emi\\OpenCV\\oso.jpg"
+output_file = "C:\\Users\\santo\\Documents\\GitHub\\Ejemplos-Emi\\OpenCV\\oso_filtrado_blurgauss.jpg"
+image = cv2.imread(image_file)
+
+# Aplicación de Blur gaussiano
+k = 1  # Tamaño del kernel: kxk
+sigma = 5 # Desviación estándar, en este caso no se aplica
+blur = cv2.GaussianBlur(image, (k, k), sigma)
+
+# Guardar imagen filtrada
+cv2.imwrite(output_file, blur)
+
+# Mostrar imágenes
+cv2.imshow('Original', image)
+cv2.imshow('Filtrado G', blur)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

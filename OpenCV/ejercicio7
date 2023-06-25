@@ -1,0 +1,17 @@
+import cv2
+
+# cargar imagen
+image_path = "C:\\Users\\santo\\Documents\\GitHub\\Ejemplos-Emi\\OpenCV\\imagenconruido.jpg"
+image = cv2.imread(image_path)
+output_file = "C:\\Users\\santo\\Documents\\GitHub\\Ejemplos-Emi\\OpenCV\\imagenconrduio-filtrado.jpg"
+# Gaussian blur
+k = 15
+sigma = 1
+blur = cv2.GaussianBlur(image, (k, k), sigma)
+# Guardar imagen filtrada
+cv2.imwrite(output_file, blur)
+# Show
+cv2.imshow('Original con ruido', image)
+cv2.imshow('Filtrado', blur)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

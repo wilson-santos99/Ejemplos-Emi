@@ -9,18 +9,19 @@ humedad=[]
 distancia=[]
 
 # Crear función que generará la gráfica en tiempo real
-def plot_temperature():
-    plt.figure()
+def realizargraficas():
+    plt.clf()
+    plt.subplot(2, 2, 1)
     plt.title('Temperatura en tiempo real')
     plt.ylabel('Temperatura (°C)')
     plt.plot(temperaturas, 'ro-', label='Temperatura')
     plt.legend(loc='upper left')
-    plt.figure()
+    plt.subplot(2, 2, 2)
     plt.title('Humedad en tiempo real')
     plt.ylabel('Humedad (%)')
     plt.plot(humedad, 'H-', label='Humead')
     plt.legend(loc='upper left')
-    plt.figure()
+    plt.subplot(2, 2, 3)
     plt.title('Distancia en tiempo real')
     plt.ylabel('Distancia (cm)')
     plt.plot(distancia, 'H-', label='Distancia')
@@ -31,9 +32,16 @@ def plot_temperature():
 def read_serial():
     # Abrir puerto serial
     ser = serial.Serial('COM3', 9600)
-    
+    ser.write(b'Hola, dispositivo serie!\n')
+    print("aca funciona")
+    #data = ser.readline().decode().strip()
+    data = ser.readline()
+    print("aui no funciona")
+    print("los datos recibidos son: "+str(data))
+    print("los datos recibidos son: "+str(data))
     # Leer datos del puerto serial
     while True:
+        
         # Leer una línea del puerto serial y convertirla a string
         data = ser.readline().decode().strip()
         print("los datos recibidos son: "+str(data))
@@ -52,9 +60,7 @@ def read_serial():
         humedad.append(float(humidity))
         distancia.append(float(sensor))
         # Generar la gráfica en tiempo real
-        drawnow(plot_temperature)
-        drawnow(plot_temperature)
-        drawnow(plot_temperature)
+        drawnow(realizargraficas)
 # Crear función principal del programa
 def main():
     # Crear ventana de Tkinter

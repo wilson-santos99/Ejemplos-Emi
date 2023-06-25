@@ -1,0 +1,18 @@
+import cv2
+# Ruta de la imagen de entrada
+image_file ="C:\\Users\\santo\\Documents\\GitHub\\Ejemplos-Emi\\OpenCV\\oso.jpg"
+output_file="C:\\Users\\santo\\Documents\\GitHub\\Ejemplos-Emi\\OpenCV\\oso_filtrado_blur.jpg"
+# Leer la imagen
+img = cv2.imread(image_file)
+k=5
+# Aplicar el filtro de desenfoque utilizando cv2.blur()
+blurred_img = cv2.blur(img, (k, k))  # Tamaño del kernel: kxk
+cv2.imwrite(output_file, blurred_img)
+# Mostrar la imagen original y la imagen filtrada
+cv2.imshow('Original', img)
+cv2.imshow('Blurred', blurred_img)
+# Esperar hasta que se presione una tecla
+cv2.waitKey(0)
+# Guardar la imagen filtrada en el archivo especificado
+# Cerrar todas las ventanas abiertas
+cv2.destroyAllWindows()
